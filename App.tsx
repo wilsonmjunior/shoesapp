@@ -9,7 +9,7 @@ import { THEME } from './src/theme';
 import { Loading } from './src/components/Loading';
 
 import { CartContextProvider } from './src/contexts/CartContext';
-import { createNotificationTagEmail } from './src/notifications/tags';
+import { addTagInfo, createNotificationTagEmail } from './src/notifications/tags';
 
 const oneSignalAppId = Platform.OS === 'android' 
   ? process.env.EXPO_PUBLIC_ONESIGNAL_ID_ANDROID 
@@ -21,7 +21,7 @@ OneSignal.Notifications.requestPermission(true);
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
 
-  createNotificationTagEmail("john.doe@gmail.com");
+  addTagInfo();
 
   return (
     <NativeBaseProvider theme={THEME}>
