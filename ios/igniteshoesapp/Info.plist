@@ -27,6 +27,7 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
+          <string>igniteshoesapp</string>
           <string>com.juniors.igniteshoesapp</string>
         </array>
       </dict>
