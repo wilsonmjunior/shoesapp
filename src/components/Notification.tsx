@@ -17,6 +17,7 @@ export function Notification({ data, onClose }: Props) {
   const { navigate } = useNavigation();
 
   const handleOnPress = () => {
+    // dados recebidos da notificação
     const { product_id, route } = data.additionalData as AdditionalData;
 
     if (route === 'details' && product_id) {
