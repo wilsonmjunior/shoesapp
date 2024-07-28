@@ -28,7 +28,8 @@ export function Notification({ data, onClose }: Props) {
 
   const handleOnPress = () => {
     if (data.launchURL) {
-      Linking.openURL(data.launchURL)
+      Linking.openURL(data.launchURL);
+      onClose();
     }
   }
 
