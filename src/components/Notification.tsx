@@ -1,7 +1,7 @@
 import { HStack, Text, IconButton, CloseIcon, Icon, Pressable } from 'native-base';
 import { Ionicons } from '@expo/vector-icons';
 import { OSNotification } from 'react-native-onesignal';
-import { useNavigation } from '@react-navigation/native';
+import * as Linking from 'expo-linking';
 
 type AdditionalData = {
   route: string;
@@ -14,15 +14,21 @@ type Props = {
 }
 
 export function Notification({ data, onClose }: Props) {
-  const { navigate } = useNavigation();
+  // const { navigate } = useNavigation();
+
+  // const handleOnPress = () => {
+    // dados recebidos da notificação
+  //   const { product_id, route } = data.additionalData as AdditionalData;
+
+  //   if (route === 'details' && product_id) {
+  //     navigate(route, { productId: product_id });
+  //     onClose();
+  //   }
+  // }
 
   const handleOnPress = () => {
-    // dados recebidos da notificação
-    const { product_id, route } = data.additionalData as AdditionalData;
-
-    if (route === 'details' && product_id) {
-      navigate(route, { productId: product_id });
-      onClose();
+    if (data.launchURL) {
+      Linking.openURL(data.launchURL)
     }
   }
 
