@@ -6,11 +6,21 @@ import { useTheme } from 'native-base';
 import { Cart } from '../screens/Cart';
 import { Home } from '../screens/Home';
 import { Details } from '../screens/Details';
+import { useCart } from '../hooks/useCart';
+import { useMemo } from 'react';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
 export function AppRoutes() {
   const { colors, sizes } = useTheme();
+
+  const { cart } = useCart();
+
+  const cartQuantity = useMemo(() => {
+    return cart.reduce((acc, product) => {
+      return acc + product.quantity
+    }, 0)
+  }, [cart]);
 
   return (
     <Navigator
@@ -36,7 +46,9 @@ export function AppRoutes() {
         name="cart"
         component={Cart}
         options={{
-          tabBarIcon: ({ color }) => <Feather name="shopping-bag" color={color} size={sizes[6]} />,
+          tabBarIcon: ({ color }) => 
+            <Feather name="shopping-bag" color={color} size={sizes[6]} />,
+          tabBarBadge: cartQuantity > 0 ? cartQuantity : undefined,
         }}
       />
 
